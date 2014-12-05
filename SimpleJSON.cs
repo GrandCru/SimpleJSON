@@ -46,6 +46,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
  
  
 namespace SimpleJSON
@@ -210,22 +211,22 @@ namespace SimpleJSON
  
         internal static string Escape(string aText)
         {
-            string result = "";
+			StringBuilder sb = new StringBuilder ();
             foreach(char c in aText)
             {
                 switch(c)
                 {
-                    case '\\' : result += "\\\\"; break;
-                    case '\"' : result += "\\\""; break;
-                    case '\n' : result += "\\n" ; break;
-                    case '\r' : result += "\\r" ; break;
-                    case '\t' : result += "\\t" ; break;
-                    case '\b' : result += "\\b" ; break;
-                    case '\f' : result += "\\f" ; break;
-                    default   : result += c     ; break;
+					case '\\' : sb.Append("\\\\"); break;
+					case '\"' : sb.Append("\\\""); break;
+					case '\n' : sb.Append("\\n") ; break;
+					case '\r' : sb.Append("\\r") ; break;
+					case '\t' : sb.Append("\\t") ; break;
+					case '\b' : sb.Append("\\b") ; break;
+					case '\f' : sb.Append("\\f") ; break;
+					default   : sb.Append(c)     ; break;
                 }
             }
-            return result;
+			return sb.ToString();
         }
  
         public static JSONNode Parse(string aJSON)
